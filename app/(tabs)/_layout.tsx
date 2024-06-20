@@ -8,30 +8,46 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
+  const colorsPage = Colors[colorScheme==='light' ? 'light':'dark'];
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: colorsPage.tabIconSelected,
+        tabBarInactiveTintColor: colorsPage.tabIconDefault,
         headerShown: false,
+        tabBarStyle: {
+            backgroundColor: colorsPage.tint,
+        }
       }}>
+       <Tabs.Screen
+        name="past"
+        options={{
+          title: 'Résultats',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name='hourglass' color={color} />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon name='home' color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="futur"
         options={{
-          title: 'Explore',
+          title: 'Futurs Matchs',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarIcon name='calendar' color={color} />
           ),
         }}
       />
+      
     </Tabs>
   );
 }
