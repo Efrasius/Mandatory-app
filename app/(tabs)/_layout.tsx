@@ -39,7 +39,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="futur"
+        name="calendrier"
         options={{
           title: 'Futurs Matchs',
           tabBarIcon: ({ color, focused }) => (
